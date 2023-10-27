@@ -1,0 +1,87 @@
+ SELECT * FROM tutorial.crunchbase_companies LIMIT 100;
+
+-- Returns first 100 rows from tutorial.crunchbase_companies
+  --SELECT 
+		
+ --FROM tutorial.crunchbase_companies LIMIT 100;
+--first question
+SELECT category_code,
+        country_code,
+        status,
+       SUM(funding_total_usd)
+FROM tutorial.crunchbase_companies
+WHERE country_code='DEU' AND status='operating'
+GROUP BY 1,2,3
+ORDER BY 4 DESC
+--tutorial.crunchbase_companies
+ SELECT * FROM tutorial.crunchbase_companies LIMIT 100;
+
+--second question
+--What company categories have 3 or more funding rounds?
+
+SELECT
+   category_code,
+   funding_rounds
+FROM tutorial.crunchbase_companies
+WHERE funding_rounds>=3
+   - Returns first 100 rows from tutorial.crunchbase_companies
+  SELECT * FROM tutorial.crunchbase_companies LIMIT 100;
+
+--What regions have the most funding?
+SELECT
+   region,
+   funding_total_usd
+FROM tutorial.crunchbase_companies
+GROUP BY 1,2
+ORDER BY 2 DESC
+SELECT * FROM tutorial.crunchbase_companies LIMIT 100;
+
+--Of companies that are still in operation, what is the average years in operation
+SELECT
+   category_code,
+   status,
+   Round(AVG(extract('year'from now())-(extract('year'from founded_at :: timestamp)))::int,0) as no_of_years
+FROM tutorial.crunchbase_companies
+WHERE status='operating'
+Group BY 1,2
+ORDER BY 3 DESC
+SELECT
+cc.category_code,
+cc.country_code,
+ca.acquired_year
+FROM tutorial.crunchbase_acquisitions AS ca
+INNER JOIN tutorial.crunchbase_companies AS cc
+ON ca.company_permalink=cc.permalink
+WHERE cc.country_code= 'DEU' AND ca.acquired_year=2013
+GROUP BY 1,2,3
+
+-- Returns first 100 rows from tutorial.crunchbase_companies
+  SELECT * FROM tutorial.crunchbase_companies LIMIT 100;
+
+-- Returns first 100 rows from tutorial.crunchbase_companies
+  SELECT * FROM tutorial.crunchbase_companies LIMIT 100;
+
+--Please share any other insight you find that would be relevant for deciding which companies to invest in
+SELECT
+   category_code,
+   state_code,
+   SUM(funding_total_usd)
+FROM tutorial.crunchbase_companies
+GROUP BY 1,2
+ORDER BY 3 DESC
+SELECT * FROM tutorial.crunchbase_companies LIMIT 100;
+
+-- Returns first 100 rows from tutorial.crunchbase_companies
+  --SELECT 
+		
+ --FROM tutorial.crunchbase_companies LIMIT 100;
+--first question
+SELECT category_code,
+        country_code,
+        status,
+       SUM(funding_total_usd)
+FROM tutorial.crunchbase_companies
+WHERE  status='operating'
+GROUP BY 1,2,3
+ORDER BY 4 DESC
+--tutorial.crunchbase_companies
